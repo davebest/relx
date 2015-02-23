@@ -149,6 +149,8 @@ overlay_files(OverlayVars, Overlay, OutputDir) ->
          {ec_cnv:to_list(File), ec_cnv:to_list(filename:join(OutputDir, File))}
      end || O <- Overlay, filter(O)].
 
+to({link, _, To}) ->
+    To;
 to({copy, _, To}) ->
     To;
 to({mkdir, To}) ->
@@ -156,6 +158,8 @@ to({mkdir, To}) ->
 to({template, _, To}) ->
     To.
 
+filter({link, _, _}) ->
+    true;
 filter({copy, _, _}) ->
     true;
 filter({mkdir, _}) ->
