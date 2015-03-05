@@ -158,6 +158,8 @@ to({mkdir, To}) ->
 to({template, _, To}) ->
     To.
 
+filter({_, _, "bin/"++_}) ->
+    false;
 filter({link, _, _}) ->
     true;
 filter({copy, _, _}) ->
