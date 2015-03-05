@@ -133,7 +133,7 @@ update_tar(State, TempDir, OutputDir, Name, Vsn, ErtsVersion) ->
                             _ ->
                                 [{"lib", filename:join(TempDir, "lib")},
                                  {"erts-"++ErtsVersion, filename:join(OutputDir, "erts-"++ErtsVersion)}]
-                        end]++OverlayFiles, [compressed]),
+                        end]++OverlayFiles, [dereference,compressed]),
     ec_cmd_log:info(rlx_state:log(State),
                     "tarball ~s successfully created!~n", [TarFile]),
     ec_file:remove(TempDir, [recursive]),
